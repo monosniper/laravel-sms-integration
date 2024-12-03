@@ -6,10 +6,14 @@ use KiranoDev\LaravelSms\Contracts\TemplateInterface;
 
 class Template implements TemplateInterface
 {
-    private string $name = '';
+    protected string $name = '';
 
     public function message(): string
     {
-        return __("sms.$this->name");
+        return __("sms.$this->name", $this->getParams());
+    }
+
+    protected function getParams(): array {
+        return [];
     }
 }

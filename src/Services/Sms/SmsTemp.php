@@ -10,5 +10,7 @@ class SmsTemp implements SmsService
 {
     public function send(?string $phone, Template $template): void
     {
+        info($phone);
+        info($template->message());
     }
 }
