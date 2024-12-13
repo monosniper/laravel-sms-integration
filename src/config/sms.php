@@ -10,5 +10,10 @@ return [
     'eskiz' => [
         'email' => '',
         'password' => '',
+    ],
+
+    'playmobile' => [
+        'login' => '',
+        'password' => '',
     ]
 ];

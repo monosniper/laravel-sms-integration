@@ -4,9 +4,15 @@ namespace KiranoDev\LaravelSms\Providers;
 
 
 use Illuminate\Support\ServiceProvider;
+use libphonenumber\PhoneNumberUtil;
 
 class LaravelSmsServiceProvider extends ServiceProvider
 {
+    public function register()
+    {
+        app()->singleton(PhoneNumberUtil::class, fn() => PhoneNumberUtil::getInstance());
+    }
+
     public function boot(): void
     {
         $this->publishes([

@@ -12,7 +12,6 @@ use libphonenumber\PhoneNumberUtil;
 
 class Eskiz implements SmsService
 {
-    private PhoneNumberUtil $phoneUtil;
     private ?PhoneNumber $numberProto;
     private string $country_code;
     private string $phone;
@@ -33,8 +32,6 @@ class Eskiz implements SmsService
     {
         $this->email = config('sms.eskiz.email');
         $this->password = config('sms.eskiz.password');
-
-        $this->phoneUtil = PhoneNumberUtil::getInstance();
         $this->token = $this->getToken();
     }
 
@@ -78,7 +75,7 @@ class Eskiz implements SmsService
 
     public function resolveCountryCode(): string
     {
-        return $this->phoneUtil->getRegionCodeForNumber(
+        return app(PhoneNumberUtil::class)->getRegionCodeForNumber(
             $this->numberProto
         );
     }
@@ -111,9 +108,9 @@ class Eskiz implements SmsService
     public function send(string $phone, Template $template): void
     {
         try {
-            $this->numberProto = $this->phoneUtil->parse($phone, 'UZ');
+            $this->numberProto = app(PhoneNumberUtil::class)->parse($phone, 'UZ');
 
-            if ($this->numberProto && $this->phoneUtil->isValidNumber($this->numberProto)) {
+            if ($this->numberProto && app(PhoneNumberUtil::class)->isValidNumber($this->numberProto)) {
                 $this->country_code = $this->resolveCountryCode();
                 $this->phone = $this->getCleanPhone($phone);
 
