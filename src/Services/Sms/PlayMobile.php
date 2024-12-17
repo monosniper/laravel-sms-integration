@@ -3,10 +3,10 @@
 
 namespace KiranoDev\LaravelSms\Services\Sms;
 
+use Exception;
 use Illuminate\Support\Facades\Http;
 use KiranoDev\LaravelSms\Abstract\Template;
 use KiranoDev\LaravelSms\Contracts\SmsService;
-use libphonenumber\NumberParseException;
 use libphonenumber\PhoneNumberUtil;
 
 class PlayMobile implements SmsService
@@ -33,7 +33,7 @@ class PlayMobile implements SmsService
                 ->post(self::API_URL, $params);
 
             return $response->json();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             info('PlayMobile error: ' . $e->getMessage());
             info('PlayMobile params: ' . json_encode($params));
         }
@@ -48,32 +48,26 @@ class PlayMobile implements SmsService
 
     public function send(string $phone, Template $template): void
     {
-        $phone1 = $this->getCleanPhone($phone);
+        $clean_phone = $this->getCleanPhone($phone);
 
         try {
-            $numberProto = app(PhoneNumberUtil::class)->parse($phone, 'UZ');
+            $numberProto = app(PhoneNumberUtil::class)->parse($clean_phone, 'UZ');
 
             if ($numberProto && app(PhoneNumberUtil::class)->isValidNumber($numberProto)) {
                 $this->makeRequest([
                     'messages' => [
                         [
-                            'template-id' => $template->template_id,
+                            'template-id' => $template->getTemplateId(),
                             'message-id' => uniqid(),
-                            'recipient' => $phone1,
+                            'recipient' => $clean_phone,
                             'variables' => $template->getVariables(),
-                            'sms' => [
-                                'originator' => '3700',
-                                'content' => [
-                                    'text' => $template->message(),
-                                ],
-                            ],
                         ]
                     ]
                 ]);
             } else {
                 info('PlayMobile Invalid phone number: ' . $phone);
             }
-        } catch (NumberParseException $e) {
+        } catch (Exception $e) {
             info('PlayMobile Parse phone error: ' . $e->getMessage());
         }
     }
