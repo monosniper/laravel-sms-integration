@@ -32,7 +32,11 @@ class PlayMobile implements SmsService
                 ])
                 ->post(self::API_URL, $params);
 
-            return $response->json();
+            $rs = $response->json();
+
+            info(json_encode($rs));
+
+            return $rs;
         } catch (Exception $e) {
             info('PlayMobile error: ' . $e->getMessage());
             info('PlayMobile params: ' . json_encode($params));
