@@ -53,6 +53,7 @@ class Eskiz implements SmsService
     {
         $this->token = $this->makeRequest(self::ROUTE_REFRESH, method: 'patch')['data']['token'];
         $this->makeRequest($route, $params, $withToken);
+        info('Eskiz refreshing token...');
     }
 
     public function makeRequest(string $route, array $params = [], bool $withToken = true, string $method = 'post'): ?array
@@ -96,6 +97,14 @@ class Eskiz implements SmsService
             'mobile_phone' => $this->phone,
             'message' => $template->message(),
         ]);
+
+        if(isset($response['message']) && $response['message'] === 'Expired') {
+            $this->refreshToken(self::ROUTE_SEND, [
+                'mobile_phone' => $this->phone,
+                'message' => $template->message(),
+            ]);
+        }
+
         info('ESKIZ message: ' . $template->message());
         info('ESKIZ response: ' . json_encode($response, JSON_UNESCAPED_UNICODE));
     }
