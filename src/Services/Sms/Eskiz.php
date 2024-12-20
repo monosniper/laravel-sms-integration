@@ -51,7 +51,9 @@ class Eskiz implements SmsService
 
     public function refreshToken(string $route, array $params = [], bool $withToken = true): void
     {
+        cache()->forget(self::CACHE_TOKEN);
         $this->token = $this->makeRequest(self::ROUTE_REFRESH, method: 'patch')['data']['token'];
+        cache()->set(self::CACHE_TOKEN, $this->token);
         $this->makeRequest($route, $params, $withToken);
         info('Eskiz refreshing token...');
     }
@@ -97,7 +99,10 @@ class Eskiz implements SmsService
             'mobile_phone' => $this->phone,
             'message' => $template->message(),
         ]);
-
+        info('ESKIZ has Expired in message or not');
+        info(isset($response['message']));
+        info($response['message'] === 'Expired');
+        info(isset($response['message']) && $response['message'] === 'Expired');
         if(isset($response['message']) && $response['message'] === 'Expired') {
             $this->refreshToken(self::ROUTE_SEND, [
                 'mobile_phone' => $this->phone,
