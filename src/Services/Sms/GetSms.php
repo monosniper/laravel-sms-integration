@@ -15,9 +15,9 @@ class GetSms implements SmsService
 
     public function __construct()
     {
-        $this->prefix = config('sms.prefix');
-        $this->login = config('sms.login');
-        $this->password = config('sms.password');
+        $this->prefix = config('sms.getsms.prefix');
+        $this->login = config('sms.getsms.login');
+        $this->password = config('sms.getsms.password');
     }
 
     public function send(?string $phone, Template $template): void
