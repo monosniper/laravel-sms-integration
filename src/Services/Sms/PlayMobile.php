@@ -35,6 +35,7 @@ class PlayMobile implements SmsService
             $rs = $response->json();
 
             info(json_encode($rs));
+            info(json_encode($params));
 
             return $rs;
         } catch (Exception $e) {
