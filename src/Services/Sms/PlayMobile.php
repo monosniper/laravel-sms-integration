@@ -22,7 +22,7 @@ class PlayMobile implements SmsService
         $this->password = config('sms.playmobile.password');
     }
 
-    public function makeRequest(array $params = []): ?array
+    public function makeRequest(array $params = []): bool
     {
         try {
             $response = Http::withBasicAuth($this->login, $this->password)
@@ -37,13 +37,13 @@ class PlayMobile implements SmsService
             info(json_encode($rs));
             info(json_encode($params));
 
-            return $rs;
+            return $response->successful();
         } catch (Exception $e) {
             info('PlayMobile error: ' . $e->getMessage());
             info('PlayMobile params: ' . json_encode($params));
         }
 
-        return null;
+        return false;
     }
 
     public function getCleanPhone($phone): string
@@ -51,7 +51,7 @@ class PlayMobile implements SmsService
         return str_replace(['+', ' '], '', $phone);
     }
 
-    public function send(string $phone, SmsTemplate $template): void
+    public function send(string $phone, SmsTemplate $template): bool
     {
         $clean_phone = $this->getCleanPhone($phone);
 
@@ -69,11 +69,15 @@ class PlayMobile implements SmsService
                         ]
                     ]
                 ]);
+
+                return true;
             } else {
                 info('PlayMobile Invalid phone number: ' . $phone);
             }
         } catch (Exception $e) {
             info('PlayMobile Parse phone error: ' . $e->getMessage());
         }
+
+        return false;
     }
 }

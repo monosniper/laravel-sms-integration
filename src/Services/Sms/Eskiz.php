@@ -119,7 +119,7 @@ class Eskiz implements SmsService
         return str_replace(['+', ' '], '', $phone);
     }
 
-    public function send(string $phone, SmsTemplate $template): void
+    public function send(string $phone, SmsTemplate $template): bool
     {
         try {
             $this->numberProto = app(PhoneNumberUtil::class)->parse($phone, 'UZ');
@@ -131,11 +131,15 @@ class Eskiz implements SmsService
                 $this->country_code === 'UZ'
                     ? $this->sendLocal($template)
                     : $this->sendGlobal($template);
+
+                return true;
             } else {
                 info('ESKIZ Invalid phone number: ' . $phone);
             }
         } catch (NumberParseException $e) {
             info('ESKIZ Parse phone error: ' . $e->getMessage());
         }
+
+        return false;
     }
 }

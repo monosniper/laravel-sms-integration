@@ -20,7 +20,7 @@ class GetSms implements SmsService
         $this->password = config('sms.getsms.password');
     }
 
-    public function send(?string $phone, SmsTemplate $template): void
+    public function send(?string $phone, SmsTemplate $template): bool
     {
         if($phone) {
             $phone = str_replace(['+', ' '], '', $phone);
@@ -46,6 +46,10 @@ class GetSms implements SmsService
             curl_setopt($curl, CURLOPT_USERAGENT, 'Opera 10.00');
             $response = curl_exec($curl);
             info(json_encode($response));
+
+            return true;
         }
+
+        return false;
     }
 }

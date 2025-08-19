@@ -8,9 +8,11 @@ use Monosniper\LaravelSms\Contracts\SmsService;
 
 class SmsTemp implements SmsService
 {
-    public function send(?string $phone, SmsTemplate $template): void
+    public function send(?string $phone, SmsTemplate $template): bool
     {
         info($phone);
         info($template->message());
+
+        return true;
     }
 }

@@ -6,5 +6,5 @@ use Monosniper\LaravelSms\Abstract\SmsTemplate;
 
 interface SmsService
 {
-    public function send(string $phone, SmsTemplate $template): void;
+    public function send(string $phone, SmsTemplate $template): bool;
 }
