@@ -4,7 +4,7 @@
 namespace Monosniper\LaravelSms\Services\Sms;
 
 use Illuminate\Support\Facades\Http;
-use Monosniper\LaravelSms\Abstract\Template;
+use Monosniper\LaravelSms\Abstract\SmsTemplate;
 use Monosniper\LaravelSms\Contracts\SmsService;
 use libphonenumber\NumberParseException;
 use libphonenumber\PhoneNumber;
@@ -83,7 +83,7 @@ class Eskiz implements SmsService
         );
     }
 
-    public function sendGlobal(Template $template): void
+    public function sendGlobal(SmsTemplate $template): void
     {
         $this->makeRequest(self::ROUTE_SEND_GLOBAL, [
             'mobile_phone' => $this->phone,
@@ -93,7 +93,7 @@ class Eskiz implements SmsService
         ]);
     }
 
-    public function sendLocal(Template $template): void
+    public function sendLocal(SmsTemplate $template): void
     {
         $response = $this->makeRequest(self::ROUTE_SEND, [
             'mobile_phone' => $this->phone,
@@ -119,7 +119,7 @@ class Eskiz implements SmsService
         return str_replace(['+', ' '], '', $phone);
     }
 
-    public function send(string $phone, Template $template): void
+    public function send(string $phone, SmsTemplate $template): void
     {
         try {
             $this->numberProto = app(PhoneNumberUtil::class)->parse($phone, 'UZ');

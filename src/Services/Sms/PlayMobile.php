@@ -5,7 +5,7 @@ namespace Monosniper\LaravelSms\Services\Sms;
 
 use Exception;
 use Illuminate\Support\Facades\Http;
-use Monosniper\LaravelSms\Abstract\Template;
+use Monosniper\LaravelSms\Abstract\SmsTemplate;
 use Monosniper\LaravelSms\Contracts\SmsService;
 use libphonenumber\PhoneNumberUtil;
 
@@ -51,7 +51,7 @@ class PlayMobile implements SmsService
         return str_replace(['+', ' '], '', $phone);
     }
 
-    public function send(string $phone, Template $template): void
+    public function send(string $phone, SmsTemplate $template): void
     {
         $clean_phone = $this->getCleanPhone($phone);
 

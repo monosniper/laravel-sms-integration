@@ -2,7 +2,7 @@
 
 namespace Monosniper\LaravelSms\Contracts;
 
-interface TemplateInterface
+interface SmsTemplateContract
 {
     public function message(): string;
 }

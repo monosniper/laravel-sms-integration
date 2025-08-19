@@ -2,7 +2,7 @@
 
 namespace Monosniper\LaravelSms\Services\Sms;
 
-use Monosniper\LaravelSms\Abstract\Template;
+use Monosniper\LaravelSms\Abstract\SmsTemplate;
 use Monosniper\LaravelSms\Contracts\SmsService;
 
 class GetSms implements SmsService
@@ -20,7 +20,7 @@ class GetSms implements SmsService
         $this->password = config('sms.getsms.password');
     }
 
-    public function send(?string $phone, Template $template): void
+    public function send(?string $phone, SmsTemplate $template): void
     {
         if($phone) {
             $phone = str_replace(['+', ' '], '', $phone);

@@ -2,7 +2,7 @@
 
 namespace Monosniper\LaravelSms\Contracts;
 
-interface PlayMobileTemplateInterface
+interface PlayMobileTemplateContract
 {
     public function getTemplateId(): int;
     public function getVariables(): array;

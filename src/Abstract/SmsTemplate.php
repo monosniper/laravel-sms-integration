@@ -2,9 +2,9 @@
 
 namespace Monosniper\LaravelSms\Abstract;
 
-use Monosniper\LaravelSms\Contracts\TemplateInterface;
+use Monosniper\LaravelSms\Contracts\SmsTemplateContract;
 
-class Template implements TemplateInterface
+class SmsTemplate implements SmsTemplateContract
 {
     protected string $name = '';
 
