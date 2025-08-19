@@ -1,6 +1,6 @@
 <?php
 
-namespace KiranoDev\LaravelSms\Contracts;
+namespace Monosniper\LaravelSms\Contracts;
 
 interface PlayMobileTemplateInterface
 {

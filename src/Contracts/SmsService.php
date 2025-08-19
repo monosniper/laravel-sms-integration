@@ -1,8 +1,8 @@
 <?php
 
-namespace KiranoDev\LaravelSms\Contracts;
+namespace Monosniper\LaravelSms\Contracts;
 
-use KiranoDev\LaravelSms\Abstract\Template;
+use Monosniper\LaravelSms\Abstract\Template;
 
 interface SmsService
 {

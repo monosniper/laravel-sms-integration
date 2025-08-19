@@ -1,6 +1,6 @@
 <?php
 
-namespace KiranoDev\LaravelSms\Providers;
+namespace Monosniper\LaravelSms\Providers;
 
 
 use Illuminate\Support\ServiceProvider;

@@ -1,8 +1,8 @@
 <?php
 
-namespace KiranoDev\LaravelSms\Abstract;
+namespace Monosniper\LaravelSms\Abstract;
 
-use KiranoDev\LaravelSms\Contracts\PlayMobileTemplateInterface;
+use Monosniper\LaravelSms\Contracts\PlayMobileTemplateInterface;
 
 abstract class PlayMobileTemplate extends Template implements PlayMobileTemplateInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace KiranoDev\LaravelSms\Services\Generators;
+namespace Monosniper\LaravelSms\Services\Generators;
 
 use Random\RandomException;
 

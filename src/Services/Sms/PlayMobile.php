@@ -1,12 +1,12 @@
 <?php
 
 
-namespace KiranoDev\LaravelSms\Services\Sms;
+namespace Monosniper\LaravelSms\Services\Sms;
 
 use Exception;
 use Illuminate\Support\Facades\Http;
-use KiranoDev\LaravelSms\Abstract\Template;
-use KiranoDev\LaravelSms\Contracts\SmsService;
+use Monosniper\LaravelSms\Abstract\Template;
+use Monosniper\LaravelSms\Contracts\SmsService;
 use libphonenumber\PhoneNumberUtil;
 
 class PlayMobile implements SmsService

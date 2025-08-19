@@ -1,8 +1,8 @@
 <?php
 
-namespace KiranoDev\LaravelSms\Traits;
+namespace Monosniper\LaravelSms\Traits;
 
-use KiranoDev\LaravelSms\Services\Generators\Code;
+use Monosniper\LaravelSms\Services\Generators\Code;
 use Random\RandomException;
 
 trait HasCode

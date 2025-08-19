@@ -1,8 +1,8 @@
 <?php
 
-namespace KiranoDev\LaravelSms\Abstract;
+namespace Monosniper\LaravelSms\Abstract;
 
-use KiranoDev\LaravelSms\Contracts\TemplateInterface;
+use Monosniper\LaravelSms\Contracts\TemplateInterface;
 
 class Template implements TemplateInterface
 {

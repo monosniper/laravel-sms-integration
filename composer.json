@@ -1,10 +1,10 @@
 {
-    "name": "kirano-dev/laravel-sms",
+    "name": "monosniper/laravel-sms",
     "description": "Integrate UZ SMS systems (Eskiz, GetSMS...)",
     "type": "library",
     "autoload": {
         "psr-4": {
-            "KiranoDev\\LaravelSms\\": "src/"
+            "Monosniper\\LaravelSms\\": "src/"
         }
     },
     "authors": [
@@ -19,7 +19,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "KiranoDev\\LaravelSms\\Providers\\LaravelSmsServiceProvider"
+                "Monosniper\\LaravelSms\\Providers\\LaravelSmsServiceProvider"
             ]
         }
     },

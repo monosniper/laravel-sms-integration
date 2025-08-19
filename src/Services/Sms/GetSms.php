@@ -1,9 +1,9 @@
 <?php
 
-namespace KiranoDev\LaravelSms\Services\Sms;
+namespace Monosniper\LaravelSms\Services\Sms;
 
-use KiranoDev\LaravelSms\Abstract\Template;
-use KiranoDev\LaravelSms\Contracts\SmsService;
+use Monosniper\LaravelSms\Abstract\Template;
+use Monosniper\LaravelSms\Contracts\SmsService;
 
 class GetSms implements SmsService
 {
